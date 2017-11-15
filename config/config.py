@@ -49,3 +49,5 @@ renders["end"] = {
     "dimension": "end",
     'markers': markers
 }
+
+texturepath = "/home/minecraft/texture.zip"
