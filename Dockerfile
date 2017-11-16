@@ -32,4 +32,7 @@ WORKDIR /home/minecraft/
 
 USER minecraft
 
+EXPOSE 80
+VOLUME ["/home/minecraft/render", "/home/minecraft/server"]
+
 CMD ["bash", "/home/minecraft/entrypoint.sh"]
