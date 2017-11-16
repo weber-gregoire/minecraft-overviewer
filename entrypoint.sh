@@ -1,7 +1,7 @@
 #!/bin/bash
 set -o errexit
 
-mv /home/minecraft/index.html /home/minecraft/render/index.html
+cp /home/minecraft/index.html /home/minecraft/render/index.html
 
 # Require MINECRAFT_VERSION environment variable to be set (no default assumed)
 if [ -z "$MINECRAFT_VERSION" ]; then

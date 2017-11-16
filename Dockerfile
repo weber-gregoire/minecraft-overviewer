@@ -11,7 +11,7 @@ FROM debian:latest
 MAINTAINER Mark Ide Jr (https://www.mide.io)
 
 RUN apt-get update && \
-    apt-get install -y wget gnupg && \
+    apt-get install -y wget gnupg cron && \
     echo "deb http://overviewer.org/debian ./" >> /etc/apt/sources.list && \
     wget -O - https://overviewer.org/debian/overviewer.gpg.asc | apt-key add - && \
     apt-get update && \
@@ -26,11 +26,11 @@ COPY entrypoint.sh /home/minecraft/entrypoint.sh
 COPY generate-map.sh /home/minecraft/generate-map.sh
 COPY index.html /home/minecraft/index.html
 
-RUN chown minecraft:minecraft -R /home/minecraft/
+#RUN chown minecraft:minecraft -R /home/minecraft/
 
 WORKDIR /home/minecraft/
 
-USER minecraft
+#USER minecraft
 
 EXPOSE 80
 VOLUME ["/home/minecraft/render", "/home/minecraft/server"]
