@@ -11,24 +11,23 @@ FROM debian:latest
 MAINTAINER Mark Ide Jr (https://www.mide.io)
 
 RUN apt-get update && \
-    apt-get install -y wget gnupg && \
+    apt-get install -y wget gnupg cron && \
     echo "deb http://overviewer.org/debian ./" >> /etc/apt/sources.list && \
     wget -O - https://overviewer.org/debian/overviewer.gpg.asc | apt-key add - && \
     apt-get update && \
     apt-get install -y minecraft-overviewer && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    useradd -m minecraft && \
     mkdir -p /home/minecraft/render /home/minecraft/server
 
 COPY config/config.py /home/minecraft/config.py
 COPY entrypoint.sh /home/minecraft/entrypoint.sh
 COPY faithful.zip /home/minecraft/texture.zip
-
-RUN chown minecraft:minecraft -R /home/minecraft/
+COPY generate-map.sh /home/minecraft/generate-map.sh
 
 WORKDIR /home/minecraft/
 
-USER minecraft
+EXPOSE 8080
+VOLUME ["/home/minecraft/render", "/home/minecraft/server"]
 
 CMD ["bash", "/home/minecraft/entrypoint.sh"]
