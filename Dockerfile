@@ -23,6 +23,8 @@ RUN apt-get update && \
 
 COPY config/config.py /home/minecraft/config.py
 COPY entrypoint.sh /home/minecraft/entrypoint.sh
+COPY generate-map.sh /home/minecraft/generate-map.sh
+COPY index.html /home/minecraft/index.html
 
 RUN chown minecraft:minecraft -R /home/minecraft/
 
