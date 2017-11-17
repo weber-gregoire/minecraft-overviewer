@@ -24,6 +24,7 @@ COPY config/config.py /home/minecraft/config.py
 COPY entrypoint.sh /home/minecraft/entrypoint.sh
 COPY faithful.zip /home/minecraft/texture.zip
 COPY generate-map.sh /home/minecraft/generate-map.sh
+COPY update-players.sh /home/minecraft/update-players.sh
 
 WORKDIR /home/minecraft/
 
