@@ -11,7 +11,7 @@ else
 
   grep "?key=" /home/minecraft/render/index.html
   if [ $? != 0 ]; then
-    sed -i 's|https://maps.google.com/maps/api/js|&?key="${GOOGLE_MAPS_API_KEY}"|g' /home/minecraft/render/index.html
+    sed -i "s|https://maps.google.com/maps/api/js|&?key=${GOOGLE_MAPS_API_KEY}|g" /home/minecraft/render/index.html
   fi
 
   rm -rf $ACTIVE_GENERATION_FLAG
