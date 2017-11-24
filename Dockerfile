@@ -18,13 +18,12 @@ RUN apt-get update && \
     apt-get install -y minecraft-overviewer && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    mkdir -p /home/minecraft/render /home/minecraft/server
+    mkdir -p /home/minecraft/render /home/minecraft/server /home/minecraft/scripts
 
 COPY config/config.py /home/minecraft/config.py
 COPY entrypoint.sh /home/minecraft/entrypoint.sh
 COPY faithful.zip /home/minecraft/texture.zip
-COPY generate-map.sh /home/minecraft/generate-map.sh
-COPY update-poi.sh /home/minecraft/update-poi.sh
+COPY scripts/* /home/minecraft/scripts/
 
 WORKDIR /home/minecraft/
 
