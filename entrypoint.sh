@@ -10,6 +10,8 @@ crontab -l | { cat; echo "*/5 * * * * /home/minecraft/update-poi.sh >> /home/min
 echo "Cron job initialized"
 service cron start
 
+./home/minecraft/generate-map.sh
+
 # move into the rendered map folder
 cd /home/minecraft/render
 
