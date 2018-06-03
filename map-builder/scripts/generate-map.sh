@@ -9,7 +9,8 @@ else
   # Run the world renders (One pass to make map, one to generate points of interests)
   overviewer.py --config /home/minecraft/config.py
 
-  /home/minecraft/scripts/update-google-map-key.sh
+  rm /home/minecraft/temp/index.html
+  cp -Rp /home/minecraft/temp/* /home/minecraft/render/.
 
   rm -rf $ACTIVE_GENERATION_FLAG
 fi
