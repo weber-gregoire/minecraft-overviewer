@@ -6,7 +6,7 @@ def playerIcons(poi):
 def signFilter(poi):
     if poi['id'] == 'Sign' or poi['id'] == 'minecraft:sign':
         if poi['Text4'] == '-- RENDER --':
-            return "\n".join([poi['Text1'], poi['Text2'], poi['Text3'], poi['Text4']])
+            return "\n".join([poi['Text1'], poi['Text2'], poi['Text3']])
 
 worlds['minecraft'] = "/home/minecraft/server/world"
 outputdir = "/home/minecraft/render/"
