@@ -1,14 +1,4 @@
-# To use this Docker image, make sure you set up the mounts properly.
-#
-# The Minecraft server files are expected at
-#     /home/minecraft/server
-#
-# The Minecraft-Overviewer render will be output at
-#     /home/minecraft/render
-
 FROM debian:latest
-
-MAINTAINER Mark Ide Jr (https://www.mide.io)
 
 RUN     apt-get update && \
         apt-get install -y wget gnupg cron && \
@@ -18,7 +8,7 @@ RUN     apt-get update && \
         apt-get install -y minecraft-overviewer && \
         apt-get clean && \
         rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-        mkdir -p /home/minecraft/render /home/minecraft/temp /home/minecraft/server /home/minecraft/scripts
+        mkdir -p /home/minecraft/render /home/minecraft/sharedRender /home/minecraft/server /home/minecraft/scripts
 
 COPY    config/config.py /home/minecraft/config.py
 COPY    entrypoint.sh /home/minecraft/entrypoint.sh
@@ -27,6 +17,6 @@ COPY    scripts/* /home/minecraft/scripts/
 
 WORKDIR /home/minecraft/
 
-VOLUME  ["/home/minecraft/server", "/home/minecraft/render"]
+VOLUME  ["/home/minecraft/server", "/home/minecraft/sharedRender"]
 
 CMD     ["bash", "/home/minecraft/entrypoint.sh"]

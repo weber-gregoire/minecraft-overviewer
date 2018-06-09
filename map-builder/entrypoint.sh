@@ -1,5 +1,4 @@
-#!/bin/bash
-set -o errexit
+#!/bin/bash -ex
 
 echo "Removing old cronjob instance if it already exists"
 crontab -l | grep -v "generate-map.sh" | crontab -
@@ -11,4 +10,7 @@ echo "Cron job initialized"
 
 # /home/minecraft/scripts/generate-map.sh
 
-cron -f
+cron
+touch /home/minecraft/cron.log
+/home/minecraft/scripts/generate-map.sh >> /home/minecraft/cron.log 2>&1
+tail -f /home/minecraft/cron.log

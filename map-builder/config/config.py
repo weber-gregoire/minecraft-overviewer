@@ -11,7 +11,7 @@ def signFilter(poi):
             return "\n".join([poi['Text1'], poi['Text2'], poi['Text3'], poi['Text4']])
 
 worlds['minecraft'] = "/home/minecraft/server/world"
-outputdir = "/home/minecraft/temp/"
+outputdir = "/home/minecraft/render/"
 
 markers = [
     dict(name="Players", filterFunction=playerIcons),
@@ -31,22 +31,6 @@ renders["night"] = {
     'title': 'Night',
     'rendermode': 'smooth_night',
     "dimension": "overworld",
-    'markers': markers
-}
-
-renders["nether"] = {
-    "world": "minecraft",
-    "title": "Nether",
-    "rendermode": 'nether_smooth_lighting',
-    "dimension": "nether",
-    'markers': markers
-}
-
-renders["end"] = {
-    "world": "minecraft",
-    "title": "End",
-    "rendermode": [Base(), EdgeLines(), SmoothLighting(strength=0.5)],
-    "dimension": "end",
     'markers': markers
 }
 
