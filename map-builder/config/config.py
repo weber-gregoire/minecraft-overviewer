@@ -18,19 +18,27 @@ markers = [
     dict(name="Signs", filterFunction=signFilter)
 ]
 
-renders["day"] = {
+renders['day'] = {
     'world': 'minecraft',
     'title': 'Day',
     'rendermode': 'smooth_lighting',
-    "dimension": "overworld",
+    'dimension': 'overworld',
     'markers': markers
 }
 
-renders["night"] = {
+renders['night'] = {
     'world': 'minecraft',
     'title': 'Night',
     'rendermode': 'smooth_night',
-    "dimension": "overworld",
+    'dimension': 'overworld',
+    'markers': markers
+}
+
+renders['nether'] = {
+    'world': 'minecraft',
+    'title': 'Nether',
+    'rendermode': 'nether',
+    'dimension': 'nether',
     'markers': markers
 }
 
