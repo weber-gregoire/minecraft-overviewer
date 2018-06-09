@@ -31,9 +31,24 @@ Simply run `docker-compose -f docker-compose-example.yml up -d` the minecraft se
 From the a cron job s running in the `minecraft-map-builder`, updating the map every hour, and the POIs every 5 minutes.
 Since there is two different container for overviewer, your map will always be available, event when the builder is generating the map.
 
+# Usefull things to know
+
+In game, you can place a sign, by default it will not be rendered on the map.
+But, if you type `-- RENDER --` on the last line of the Sign, it will be flagged and the text of the first to third line will be shown on the map.
+
+# Advanced configuration
+
+You can override the config file to have a different map, or different informations displayed.
+The documentation regarding the syntax and options can be found [here][6].
+And you can just override the file by extnding the image with your own as follow:
+```
+FROM gregoireweber/minecraft-map-builder
+COPY config.py /home/minecraft/config.py
+```
+
 # See also
 
-My git repo of [minecraft server in a lightweight docker image][6]
+My git repo of [minecraft server in a lightweight docker image][7]
 
 [0]: https://travis-ci.org/weber-gregoire/minecraft-overviewer
 [1]: https://hub.docker.com/r/gregoireweber/minecraft-map-builder/
@@ -41,4 +56,5 @@ My git repo of [minecraft server in a lightweight docker image][6]
 [3]: https://overviewer.org/
 [4]: https://leafletjs.com/
 [5]: https://minecraft.net/
-[6]: https://github.com/weber-gregoire/docker-minecraft
+[6]: http://docs.overviewer.org/en/latest/config/
+[7]: https://github.com/weber-gregoire/docker-minecraft
