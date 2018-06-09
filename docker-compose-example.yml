@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+
+  minecraft-server:
+    image: gregoireweber/minecraft-server:1.12.2
+    restart: unless-stopped
+    volumes:
+    - ./server-data:/minecraft/data
+    ports:
+     - "25565:25565"
+
+  minecraft-map-builder:
+    image: gregoireweber/minecraft-map-builder:latest
+    restart: unless-stopped
+    volumes:
+      - './server-data:/home/minecraft/server'
+      - './render-data:/home/minecraft/sharedRender'
+
+  minecraft-map-viewer:
+    image: gregoireweber/minecraft-map-viewer:latest
+    restart: unless-stopped
+    volumes:
+      - './render-data:/home/minecraft/render'
+    ports:
+      - "80:80"
