@@ -1,14 +1,19 @@
-version: '2'
+version: '3.7'
 
 services:
 
   minecraft-server:
-    image: gregoireweber/minecraft-server:1.12.2
+    image: gregoireweber/minecraft-server:latest
     restart: unless-stopped
     volumes:
     - ./server-data:/minecraft/data
     ports:
      - "25565:25565"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "500k"
+        max-file: "30"
 
   minecraft-map-builder:
     image: gregoireweber/minecraft-map-builder:latest
@@ -16,6 +21,11 @@ services:
     volumes:
       - './server-data:/home/minecraft/server'
       - './render-data:/home/minecraft/sharedRender'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "500k"
+        max-file: "10"
 
   minecraft-map-viewer:
     image: gregoireweber/minecraft-map-viewer:latest
@@ -24,3 +34,8 @@ services:
       - './render-data:/home/minecraft/render'
     ports:
       - "80:80"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "500k"
+        max-file: "10"
