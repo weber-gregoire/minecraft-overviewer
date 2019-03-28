@@ -8,9 +8,6 @@ crontab -l | { cat; echo "0 * * * * /home/minecraft/scripts/generate-map.sh >> /
 crontab -l | { cat; echo "*/5 * * * * /home/minecraft/scripts/update-poi.sh >> /home/minecraft/cron.log 2>&1"; } | crontab -
 echo "Cron job initialized"
 
-# /home/minecraft/scripts/generate-map.sh
-
-cron
-touch /home/minecraft/cron.log
-/home/minecraft/scripts/generate-map.sh >> /home/minecraft/cron.log 2>&1
-tail -f /home/minecraft/cron.log
+echo "Starting initial map generation..."
+/home/minecraft/scripts/generate-map.sh
+cron -f

@@ -6,10 +6,10 @@ script:
   - docker build -t gregoireweber/minecraft-map-viewer:latest map-viewer/
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
       docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-      docker tag gregoireweber/minecraft-map-builder:latest gregoireweber/minecraft-map-builder:"$TRAVIS_BUILD_NUMBER";
+      docker tag gregoireweber/minecraft-map-builder:latest gregoireweber/minecraft-map-builder:0.13.0-"$TRAVIS_BUILD_NUMBER";
       docker tag gregoireweber/minecraft-map-viewer:latest gregoireweber/minecraft-map-viewer:"$TRAVIS_BUILD_NUMBER";
       docker push gregoireweber/minecraft-map-builder:latest;
-      docker push gregoireweber/minecraft-map-builder:"$TRAVIS_BUILD_NUMBER";
+      docker push gregoireweber/minecraft-map-builder:0.13.0-"$TRAVIS_BUILD_NUMBER";
       docker push gregoireweber/minecraft-map-viewer:latest;
       docker push gregoireweber/minecraft-map-viewer:"$TRAVIS_BUILD_NUMBER";
     fi

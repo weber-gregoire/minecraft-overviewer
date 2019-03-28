@@ -1,8 +1,22 @@
-[![Builder Travis](https://img.shields.io/travis/weber-gregoire/docker-minecraft.svg)][0] [![Builder Docker Pulls](https://img.shields.io/docker/pulls/gregoireweber/minecraft-map-builder.svg)][1] [![Viewer Docker Pulls](https://img.shields.io/docker/pulls/gregoireweber/minecraft-map-viewer.svg)][2]
+[![Builder Travis](https://img.shields.io/travis/weber-gregoire/docker-minecraft.svg)][0]
+Map builder: [![Builder Docker Pulls](https://img.shields.io/docker/pulls/gregoireweber/minecraft-map-builder.svg)][1]
+Map viewer:  [![Viewer Docker Pulls](https://img.shields.io/docker/pulls/gregoireweber/minecraft-map-viewer.svg)][2]
 
 # Minecraft Overviewer Docker Images
 
 Docker Images to Run [Minecraft Overviewer][3]. Overviewer is a render that produces a [Leaflet][4] render of a [Minecraft][5] world.
+
+# Tags and versions
+
+## Map builder
+
+Tags for map builder from `1` to `7` is compatible with minecraft 1.12
+When support for 1.13 was added, image versionning was updated to include overviewer version number as follows
+```gregoireweber/minecraft-map-builder:{OVERVIEWER_RELEASE_VERSION}-{TRAVIS_BUILD_NUMBER}```
+
+## Map viewer
+
+Map viewver is a simple http server, no specific version is necessary as long as the volume is shared with the builder container
 
 # How it works
 
@@ -48,7 +62,8 @@ COPY config.py /home/minecraft/config.py
 
 # See also
 
-My git repo of [minecraft server in a lightweight docker image][7]
+Source of used textures for render: [Faithful texture pack][7]
+My git repo of [minecraft server in a lightweight docker image][8]
 
 [0]: https://travis-ci.org/weber-gregoire/minecraft-overviewer
 [1]: https://hub.docker.com/r/gregoireweber/minecraft-map-builder/
@@ -57,4 +72,5 @@ My git repo of [minecraft server in a lightweight docker image][7]
 [4]: https://leafletjs.com/
 [5]: https://minecraft.net/
 [6]: http://docs.overviewer.org/en/latest/config/
-[7]: https://github.com/weber-gregoire/docker-minecraft
+[7]: https://minecraft.curseforge.com/projects/faithful-32x
+[8]: https://github.com/weber-gregoire/docker-minecraft
