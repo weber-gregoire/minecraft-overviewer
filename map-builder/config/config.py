@@ -32,6 +32,14 @@ renders['night'] = {
     'markers': markers
 }
 
+renders['ender'] = {
+    'world': 'minecraft',
+    'title': 'Ender',
+    'rendermode': 'smooth_lighting',
+    'dimension': 'end',
+    'markers': markers
+}
+
 renders['nether'] = {
     'world': 'minecraft',
     'title': 'Nether',
@@ -39,5 +47,3 @@ renders['nether'] = {
     'dimension': 'nether',
     'markers': markers
 }
-
-texturepath = "/home/minecraft/texture.zip"

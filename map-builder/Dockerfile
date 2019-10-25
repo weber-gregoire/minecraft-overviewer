@@ -1,19 +1,22 @@
-FROM debian:latest
+FROM    debian:latest
 
 RUN     apt-get update && \
-        apt-get install -y wget gnupg cron && \
-        echo "deb http://overviewer.org/debian ./" >> /etc/apt/sources.list && \
-        wget -O - https://overviewer.org/debian/overviewer.gpg.asc | apt-key add - && \
-        apt-get update && \
-        apt-get install -y minecraft-overviewer=0.14.72-0~overviewer1 && \
+        apt-get install -y wget gnupg cron build-essential python3-pil python3-dev python3-numpy python-dev && \
         apt-get clean && \
         rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-        mkdir -p /home/minecraft/render /home/minecraft/sharedRender /home/minecraft/server /home/minecraft/scripts
+        mkdir -p /home/minecraft/render /home/minecraft/sharedRender /home/minecraft/server /home/minecraft/scripts /root/.minecraft/versions/1.14
+
+WORKDIR /home/overviewer/
+RUN     wget https://overviewer.org/textures/1.14 -O /root/.minecraft/versions/1.14/1.14.jar && \
+        wget -O overviewer.tar.gz https://github.com/overviewer/Minecraft-Overviewer/tarball/master && \
+        tar -xzvf overviewer.tar.gz && \
+        cd $(ls | grep overviewer-Minecraft-Overviewer) && \
+        python3 setup.py build && \
+        python3 setup.py install
 
 RUN     ln -sf /proc/1/fd/1 /home/minecraft/cron.log
 COPY    config/config.py /home/minecraft/config.py
 COPY    entrypoint.sh /home/minecraft/entrypoint.sh
-COPY    faithful-1.14.4-r4.1.zip /home/minecraft/texture.zip
 COPY    scripts/* /home/minecraft/scripts/
 
 WORKDIR /home/minecraft/
