@@ -4,10 +4,10 @@ RUN     apt-get update && \
         apt-get install -y wget gnupg cron build-essential python3-pil python3-dev python3-numpy python-dev && \
         apt-get clean && \
         rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-        mkdir -p /home/minecraft/render /home/minecraft/sharedRender /home/minecraft/server /home/minecraft/scripts /root/.minecraft/versions/1.14
+        mkdir -p /home/minecraft/render /home/minecraft/sharedRender /home/minecraft/server /home/minecraft/scripts /root/.minecraft/versions/1.15
 
 WORKDIR /home/overviewer/
-RUN     wget https://overviewer.org/textures/1.14 -O /root/.minecraft/versions/1.14/1.14.jar && \
+RUN     wget https://overviewer.org/textures/1.15 -O /root/.minecraft/versions/1.15/1.15.jar && \
         wget -O overviewer.tar.gz https://github.com/overviewer/Minecraft-Overviewer/tarball/master && \
         tar -xzvf overviewer.tar.gz && \
         cd $(ls | grep overviewer-Minecraft-Overviewer) && \
