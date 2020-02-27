@@ -43,7 +43,7 @@ renders['ender'] = {
 renders['nether'] = {
     'world': 'minecraft',
     'title': 'Nether',
-    'rendermode': 'nether',
+    'rendermode': 'nether_smooth_lighting',
     'dimension': 'nether',
     'markers': markers
 }
