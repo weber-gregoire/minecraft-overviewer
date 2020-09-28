@@ -21,6 +21,9 @@ services:
     volumes:
       - './server-data:/home/minecraft/server'
       - './render-data:/home/minecraft/sharedRender'
+    environment:
+      - MAP_GENERATION_FREQUENCY=0 1 * * 1
+      - POI_REFRESH_FREQUENCY=*/30 * * * *
     logging:
       driver: "json-file"
       options:

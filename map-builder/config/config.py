@@ -32,11 +32,11 @@ renders['night'] = {
     'markers': markers
 }
 
-renders['ender'] = {
+renders['cave'] = {
     'world': 'minecraft',
-    'title': 'Ender',
-    'rendermode': 'smooth_lighting',
-    'dimension': 'end',
+    'title': 'Cave',
+    'rendermode': 'cave',
+    'dimension': 'overworld',
     'markers': markers
 }
 
@@ -47,3 +47,12 @@ renders['nether'] = {
     'dimension': 'nether',
     'markers': markers
 }
+
+renders['ender'] = {
+    'world': 'minecraft',
+    'title': 'Ender',
+    'rendermode': 'smooth_lighting',
+    'dimension': 'end',
+    'markers': markers
+}
+

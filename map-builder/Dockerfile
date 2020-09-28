@@ -1,13 +1,16 @@
 FROM    debian:latest
 
+ENV     MAP_GENERATION_FREQUENCY="0 * * * *"
+ENV     POI_REFRESH_FREQUENCY="*/5 * * * *"
+
 RUN     apt-get update && \
         apt-get install -y wget gnupg cron build-essential python3-pil python3-dev python3-numpy python-dev && \
         apt-get clean && \
         rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-        mkdir -p /home/minecraft/render /home/minecraft/sharedRender /home/minecraft/server /home/minecraft/scripts /root/.minecraft/versions/1.15
+        mkdir -p /home/minecraft/render /home/minecraft/sharedRender /home/minecraft/server /home/minecraft/scripts /root/.minecraft/versions/1.16
 
 WORKDIR /home/overviewer/
-RUN     wget https://overviewer.org/textures/1.15 -O /root/.minecraft/versions/1.15/1.15.jar && \
+RUN     wget https://overviewer.org/textures/1.16 -O /root/.minecraft/versions/1.16/1.16.jar && \
         wget -O overviewer.tar.gz https://github.com/overviewer/Minecraft-Overviewer/tarball/master && \
         tar -xzvf overviewer.tar.gz && \
         cd $(ls | grep overviewer-Minecraft-Overviewer) && \
