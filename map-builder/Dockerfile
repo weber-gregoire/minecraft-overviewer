@@ -1,5 +1,8 @@
 FROM    debian:latest
 
+ENV     MAP_GENERATION_FREQUENCY="0 * * * *"
+ENV     POI_REFRESH_FREQUENCY="*/5 * * * *"
+
 RUN     apt-get update && \
         apt-get install -y wget gnupg cron build-essential python3-pil python3-dev python3-numpy python-dev && \
         apt-get clean && \

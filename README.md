@@ -12,7 +12,10 @@ Docker Images to Run [Minecraft Overviewer][3]. Overviewer is a render that prod
 
 Tags for map builder from `1` to `7` is compatible with minecraft 1.12
 When support for 1.13 was added, image versionning was updated to include overviewer version number as follows
-```gregoireweber/minecraft-map-builder:{OVERVIEWER_RELEASE_VERSION}-{TRAVIS_BUILD_NUMBER}```
+```bash
+gregoireweber/minecraft-map-builder:{OVERVIEWER_RELEASE_VERSION}
+gregoireweber/minecraft-map-builder:{OVERVIEWER_RELEASE_VERSION}-{TRAVIS_BUILD_NUMBER}
+```
 
 ## Map viewer
 
@@ -50,10 +53,28 @@ Since there is two different container for overviewer, your map will always be a
 In game, you can place a sign, by default it will not be rendered on the map.
 But, if you type `-- RENDER --` on the last line of the Sign, it will be flagged and the text of the first to third line will be shown on the map.
 
+# Configuration
+
+Two environment variables are available to configure the cronjob that generate map data.
+You can either configure it via the `-e` option of the docker run command, or by specifiying the value in a docker-compose file (see `docker-compose-example.yml`).
+
+## Map Generation
+
+You can use the environment vairable `MAP_GENERATION_FREQUENCY` to configure the frenquency at which the map generation is triggered by the cron job.
+You must use a valid cron expression, you can use [this tool to do so][6]
+Default value is `0 * * * *` (every hour at minute 0).
+
+## POI Generation
+
+You can use the environment vairable `POI_REFRESH_FREQUENCY` to configure the frenquency at which the POI refresh script is triggered by the cron job.
+You must use a valid cron expression, you can use [this tool to do so][6]
+Default value is `*/5 * * * *` (every five minutes).
+
+
 # Advanced configuration
 
 You can override the config file to have a different map, or different informations displayed.
-The documentation regarding the syntax and options can be found [here][6].
+The documentation regarding the syntax and options can be found [here][7].
 And you can just override the file by extnding the image with your own as follow:
 ```
 FROM gregoireweber/minecraft-map-builder
@@ -62,8 +83,8 @@ COPY config.py /home/minecraft/config.py
 
 # See also
 
-Source of used textures for render: [Faithful texture pack][7]
-My git repo of [minecraft server in a lightweight docker image][8]
+Source of used textures for render: [Faithful texture pack][8]
+My git repo of [minecraft server in a lightweight docker image][9]
 
 [0]: https://travis-ci.org/weber-gregoire/minecraft-overviewer
 [1]: https://hub.docker.com/r/gregoireweber/minecraft-map-builder/
@@ -71,6 +92,7 @@ My git repo of [minecraft server in a lightweight docker image][8]
 [3]: https://overviewer.org/
 [4]: https://leafletjs.com/
 [5]: https://minecraft.net/
-[6]: http://docs.overviewer.org/en/latest/config/
-[7]: https://minecraft.curseforge.com/projects/faithful-32x
-[8]: https://github.com/weber-gregoire/docker-minecraft
+[6]: https://crontab-generator.org/
+[7]: http://docs.overviewer.org/en/latest/config/
+[8]: https://minecraft.curseforge.com/projects/faithful-32x
+[9]: https://github.com/weber-gregoire/docker-minecraft
